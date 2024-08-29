@@ -1,6 +1,6 @@
 /* ? -------  Trouble shoot checking section --------- */
-/* 
-* {
+
+/* * {
   background-color: rgb(0 100 0 / 0.1);
 } */
 
@@ -97,6 +97,7 @@ button {
 .header {
   margin-top: 10px;
   height: 175px;
+  margin-bottom: 80px;
 }
 
 .header__top {
@@ -114,7 +115,7 @@ button {
 .header__main {
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
@@ -128,7 +129,7 @@ button {
 .header__main__text {
   position: relative;
   top: 12px;
-  margin-left: 25px;
+  margin-left: 40px;
 }
 
 .header__main__text p {
@@ -147,7 +148,7 @@ button {
   z-index: -1;
 }
 
-@media screen and (min-width: 365px) {
+@media screen and (min-width: 392px) {
   .header__main__text {
     position: relative;
     top: 25px;
@@ -162,17 +163,168 @@ button {
   }
 }
 
-@media screen and (min-width: 444px) {
+@media screen and (min-width: 470px) {
   .header__main__text p {
     display: block;
   }
 }
 
-@media screen and (min-width: 680px) {
-  .header__main {
-    justify-content: center;
-  }
+@media screen and (min-width: 360px) {
   .header__main__text {
     margin-right: 1rem;
   }
 }
+
+/* --------------------------- Selection  --------------------------- */
+.selection {
+  display: flex;
+  justify-content: center;
+}
+
+.selection__items {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.selection__items p {
+  width: 80px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: underline solid var(--color-primary-color);
+  transition: all 50ms;
+}
+
+.selection__items :nth-child(2) {
+  margin: 0rem 0.75rem;
+}
+
+/* --------------------------- Songs Cover Section ------------------------- */
+
+.songs-cover {
+  display: flex;
+  overflow: auto;
+}
+
+.song-cover__self {
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.song-cover__self__cover-image {
+  position: relative;
+}
+
+.song-cover__self__cover-image img {
+  width: 148px;
+  height: 185px;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 30px;
+}
+
+.song-cover__self__cover-image svg {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  background-color: var(--color-playIcon-background);
+  padding: 7px;
+  border-radius: 100%;
+  bottom: -5px;
+  right: 10px;
+}
+
+.song-cover__self__text h2 {
+  font-size: 1.2rem;
+}
+
+.song-cover__self__text p {
+  font-size: 1rem;
+}
+
+@media screen and (min-width: 1000px) {
+  .song-cover__self__text h2 {
+    font-size: 1.3rem;
+  }
+
+  .song-cover__self__text p {
+    font-size: 1.1rem;
+  }
+}
+
+/* ------------------------------- Tracks Section ------------------------------------ */
+
+.tracks-section__title {
+  margin-bottom: 20px;
+}
+
+.tracks__self {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-playIcon-background);
+  border-radius: 30px;
+  padding: 8px 18px;
+  margin-bottom: 20px;
+}
+
+.tracks__self__left {
+  display: flex;
+  align-items: center;
+}
+
+.tracks__self__left__play-icon svg {
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-playIcon-background);
+  /* padding: 10px; */
+  border-radius: 100%;
+  margin-right: 15px;
+}
+
+.tracks__self__left__text h2 {
+  font-size: 1rem;
+}
+
+.tracks__self__left__text p {
+  font-size: 0.8rem;
+}
+
+.tracks__self__right {
+  display: flex;
+  align-items: center;
+}
+
+.tracks__self__right__icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  margin-left: 10px;
+}
+
+@media screen and (min-width: 1000px) {
+  .tracks__self__left__text h2 {
+    font-size: 1.3rem;
+  }
+
+  .tracks__self__left__text p {
+    font-size: 1.1rem;
+  }
+}
+
+/* ------------------------ Playing Song Section ------------------------- */
+
+/* .song-playing-section__main {
+    display: grid;
+  }
+  
+  .song-playing-section__top {
+    background-color: black;
+    width: 100%;
+  }
+  
+  .song-playing-section__bottom {
+    background-color: gold;
+    width: 100%;
+  }
+   */
