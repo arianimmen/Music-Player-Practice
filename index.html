@@ -94,16 +94,17 @@
     <!------------------------ Playing Song Section ------------------------->
 
     <section class="song-playing-section">
-      <div class="song-playing-section__main container-modal">
+      <div class="song-playing-section__main">
         <div class="song-playing-section__top">
           <div class="song-playing-section__top__icons">
-            <svg class="icon">
-              <use xlink:href="./assets/images/sprite.svg#previousPage"></use>
-            </svg>
-            <h2>Bad Guy</h2>
-            <svg class="icon">
-              <use xlink:href="./assets/images/sprite.svg#previousPage"></use>
-            </svg>
+            <div class="container-modal">
+              <img
+                src="./assets/images/icons8-close.svg"
+                class="close-btn"
+                alt="close icon"
+              />
+              <h2>Bad Guy</h2>
+            </div>
           </div>
 
           <p class="song-playing-section__top__lyric">
@@ -160,13 +161,16 @@
 
             My soul? So cynical<br />
           </p>
-          <img src="./assets/images/back.png" alt="back" class="temp" />
+          <img
+            src="./assets/images/back.png"
+            alt="back"
+            class="modal-back-image"
+          />
         </div>
 
         <div class="song-playing-section__bottom">
           <div class="song-playing-section__bottom__info">
             <div class="song-playing-section__bottom__info__left">
-              <img src="" alt="" />
               <div class="song-playing-section__bottom__info__left__text">
                 <h2>Bad Guy</h2>
                 <p>Billie Eilishs</p>
@@ -179,28 +183,34 @@
               </svg>
             </div>
           </div>
+
           <div class="song-playing-section__bottom__progress">
-            <progress id="file" value="32" max="100">32%</progress>
+            <div class="song-playing-section__bottom__progress__self">25%</div>
           </div>
+
+          <!-- <div class="song-playing-section__bottom__progress">
+            <progress id="file" value="32" max="100">32%</progress>
+          </div> -->
 
           <div class="song-playing-section__bottom__controls">
             <svg class="icon">
-              <use xlink:href="./assets/images/sprite.svg#next"></use>
-            </svg>
-            <svg class="icon">
-              <use xlink:href="./assets/images/sprite.svg#playbutton"></use>
+              <use xlink:href="./assets/images/sprite.svg#repeat"></use>
             </svg>
 
             <svg class="icon">
               <use xlink:href="./assets/images/sprite.svg#back"></use>
             </svg>
 
-            <svg class="icon">
-              <use xlink:href="./assets/images/sprite.svg#random"></use>
+            <svg class="icon playbutton">
+              <use xlink:href="./assets/images/sprite.svg#playbutton" class="playbutton-self"></use>
             </svg>
 
             <svg class="icon">
-              <use xlink:href="./assets/images/sprite.svg#repeat"></use>
+              <use xlink:href="./assets/images/sprite.svg#next"></use>
+            </svg>
+
+            <svg class="icon">
+              <use xlink:href="./assets/images/sprite.svg#random"></use>
             </svg>
           </div>
         </div>
