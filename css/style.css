@@ -1,6 +1,6 @@
 /* ? -------  Trouble shoot checking section --------- */
-
-/* * {
+/* 
+* {
   background-color: rgb(0 100 0 / 0.1);
 } */
 
@@ -21,9 +21,9 @@
   padding: 1rem 1rem;
 }
 
-@media screen and (min-width: 1600px) {
+@media screen and (min-width: 1500px) {
   .container {
-    max-width: 1600px;
+    max-width: 1500px;
     margin: 0rem auto;
   }
 }
@@ -112,28 +112,67 @@ button {
 }
 
 .header__main {
-  padding: 1rem;
   position: relative;
-  background-color: var(--color-primary-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 30px;
 }
 
 .header__main__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   color: white;
-  width: 25vw;
 }
 
-.hero-image {
+.header__main__text {
+  position: relative;
+  top: 12px;
+  margin-left: 25px;
+}
+
+.header__main__text p {
+  display: none;
+}
+
+.header__main__background {
+  background-color: var(--color-primary-color);
   position: absolute;
   bottom: 0;
-  right: 0;
+  width: 100%;
+  height: 140px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  z-index: -1;
 }
 
-@media screen and (min-width: 414px) {
+@media screen and (min-width: 365px) {
   .header__main__text {
-    width: auto;
+    position: relative;
+    top: 25px;
+  }
+  .header__main__text :last-child {
+    display: block;
+  }
+
+  .header__main__background {
+    border-radius: 30px;
+    height: 120px;
+  }
+}
+
+@media screen and (min-width: 444px) {
+  .header__main__text p {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 680px) {
+  .header__main {
+    justify-content: center;
+  }
+  .header__main__text {
+    margin-right: 1rem;
   }
 }
