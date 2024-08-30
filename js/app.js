@@ -12,7 +12,7 @@ let status;
 const songsCover = document.querySelector(".songs-cover");
 const tracksContainer = document.querySelector(".tracks-container");
 
-// *selecting the audio tag (it will be act as main audio player)
+// *--- selecting the audio tag (it will be act as main audio player) -----
 const selectedAudioPlayer = document.querySelector(".selected-audio");
 
 // *------------------------ ModalArea -------------------------------------
@@ -44,9 +44,11 @@ const allBtn = document.querySelector(".allBtn");
 const favouriteBtn = document.querySelector(".FavouriteBtn");
 
 // *--------------------------- Favourite ----------------------------------------
-const favouriteIconMainPage = document.querySelector(
-  ".tracks__self__right__icon"
-);
+const favIconModal = document.querySelector(".favIconModal");
+
+// *--------------------------- SearchBar ---------------------------------------
+const searchBar = document.querySelector(".search-bar");
+const selectionSection = document.querySelector(".selection");
 
 class Ui {
   addToDOM(songs) {
@@ -93,6 +95,7 @@ class Ui {
         this.filterSongs(status);
       }
     });
+    Storage.saveDate(allSongs);
   }
 
   createCoverHTML(song) {
@@ -126,8 +129,10 @@ class Ui {
               <p>${song.singer}</p>
             </div>
           </div>
-          <div class="tracks__self__right" data-songId=${song.id} >
-            <svg class="icon tracks__self__right__icon" data-songId=${song.id}>
+          <div class="tracks__self__right" data-songId=${song.id}  >
+            <svg class="icon tracks__self__right__icon ${
+              song.isFavourite == 1 ? "--fav-selected" : ""
+            }" data-songId=${song.id}>
               <use xlink:href="./assets/images/sprite.svg#heart" class="tracks__self__right__icon__self"></use>
             </svg>
           </div>
@@ -142,13 +147,6 @@ class Ui {
         allFilteredSongs = favSongs;
         this.addToDOM(allFilteredSongs);
         break;
-
-      case "news":
-        const filteredSongs = allSongs.sort((a, b) => {
-          new Date(a.releaseDate) > new Date(b.releaseDate) ? 1 : -1;
-        });
-        allFilteredSongs = filteredSongs;
-        this.addToDOM(filteredSongs);
 
       default:
         allFilteredSongs = allSongs;
@@ -231,6 +229,7 @@ class Ui {
     this.playingAndStopingThesong();
 
     // Updating the ui Modal
+
     lyricsSection.textContent = activeSongObject.lyrics;
     modalLeftTitle.textContent = activeSongObject.title;
     modalLeftSinger.textContent = activeSongObject.singer;
@@ -295,6 +294,21 @@ class Ui {
     }
   }
 
+  searchLogic(target) {
+    if (target == "") {
+      allFilteredSongs = allSongs;
+      selectionSection.classList.remove("--display-none");
+      status = "all";
+      this.filterSongs(status);
+    } else {
+      allFilteredSongs = allSongs.filter((song) =>
+        song.title.toLowerCase().includes(target)
+      );
+      selectionSection.classList.add("--display-none");
+      this.addToDOM(allFilteredSongs);
+    }
+  }
+
   openModal() {
     songPlayingSectionModal.classList.remove("--display-none"); // Opening the modal by removing the class none
   }
@@ -324,6 +338,13 @@ document.addEventListener("DOMContentLoaded", () => {
       ui.filterSongs(status);
     });
   });
+
+  searchBar.addEventListener("input", (e) => {
+    let target = e.target.value.trim().toLowerCase();
+    ui.searchLogic(target);
+  });
+
+  favIconModal.addEventListener("click", () => {});
 
   ui.progressBar();
 });

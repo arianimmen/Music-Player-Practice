@@ -11,11 +11,14 @@
     <!------------------------- Header ---------------------------------->
     <header class="header container">
       <div class="header__top">
-        <svg class="icon">
-          <use xlink:href="./assets/images/sprite.svg#search"></use>
-        </svg>
-        <img src="./assets/images/Vector.svg" alt="Logo" />
-        <div>X</div>
+        <form>
+          <div class="header__top__search-bar-container">
+            <svg class="icon">
+              <use xlink:href="./assets/images/sprite.svg#search"></use>
+            </svg>
+            <input type="text" placeholder="Search" class="search-bar"/>
+          </div>
+        </form>
       </div>
 
       <div class="header__main">
@@ -212,7 +215,7 @@
               <use xlink:href="./assets/images/sprite.svg#next"></use>
             </svg>
 
-            <svg class="icon">
+            <svg class="icon favIconModal">
               <use xlink:href="./assets/images/sprite.svg#heart"></use>
             </svg>
           </div>
