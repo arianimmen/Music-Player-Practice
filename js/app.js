@@ -108,8 +108,8 @@ class Ui {
           </svg>
         </div>
         <div class="song-cover__self__text">
-          <h2>"${song.title}"</h2>
-          <p>"${song.singer}"</p>
+          <h2>${song.title}</h2>
+          <p>${song.singer}</p>
         </div>
       </div>
     `;
@@ -228,8 +228,14 @@ class Ui {
     // Playing the song
     this.playingAndStopingThesong();
 
-    // Updating the ui Modal
+    favIconModal.dataset.idofsong = activeSongID;
 
+    // Updating the ui Modal
+    if (activeSongObject.isFavourite) {
+      favIconModal.classList.add("--fav-selected");
+    } else {
+      favIconModal.classList.remove("--fav-selected");
+    }
     lyricsSection.textContent = activeSongObject.lyrics;
     modalLeftTitle.textContent = activeSongObject.title;
     modalLeftSinger.textContent = activeSongObject.singer;
@@ -344,7 +350,15 @@ document.addEventListener("DOMContentLoaded", () => {
     ui.searchLogic(target);
   });
 
-  favIconModal.addEventListener("click", () => {});
+  favIconModal.addEventListener("click", (e) => {
+    const id = e.target.dataset.idofsong;
+    ui.favouriteLogic(id);
+    if (e.target.classList.value.includes("--fav-selected")) {
+      favIconModal.classList.remove("--fav-selected");
+    } else {
+      favIconModal.classList.add("--fav-selected");
+    }
+  });
 
   ui.progressBar();
 });

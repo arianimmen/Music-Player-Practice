@@ -538,3 +538,7 @@ button {
   filter: invert(56%) sepia(66%) saturate(4529%) hue-rotate(331deg)
     brightness(79%) contrast(98%);
 }
+
+.--disable-click{
+  pointer-events: none;
+}
