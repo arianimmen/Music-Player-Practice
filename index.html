@@ -37,6 +37,7 @@
 
     <section class="selection container">
       <div class="selection__items">
+        <!-- selection-selected -->
         <p>All</p>
         <p>News</p>
         <p>Favourite</p>
@@ -54,7 +55,6 @@
             <use xlink:href="./assets/images/sprite.svg#playbutton"></use>
           </svg>
         </div>
-
         <div class="song-cover__self__text">
           <h2>Bad Guy</h2>
           <p>Billie Eilish</p>
@@ -66,8 +66,8 @@
 
     <section class="tracks-section container">
       <h2 class="tracks-section__title">Playlist</h2>
-      <!-- Single Track -->
       <div class="tracks-container">
+        <!-- Single Track -->
         <div class="tracks__self">
           <div class="tracks__self__left">
             <div class="tracks__self__left__play-icon">
@@ -90,12 +90,13 @@
       </div>
     </section>
 
-    <!-- !TEMP  -->
     <!------------------------ Playing Song Section ------------------------->
 
-    <section class="song-playing-section">
+    <section class="song-playing-section --display-none">
       <div class="song-playing-section__main">
         <div class="song-playing-section__top">
+          <audio src="" class="selected-audio"></audio>
+
           <div class="song-playing-section__top__icons">
             <div class="container-modal">
               <img
@@ -172,8 +173,8 @@
           <div class="song-playing-section__bottom__info">
             <div class="song-playing-section__bottom__info__left">
               <div class="song-playing-section__bottom__info__left__text">
-                <h2>Bad Guy</h2>
-                <p>Billie Eilishs</p>
+                <h2 class="modalLeftTitle">Bad Guy</h2>
+                <p class="modalLeftSinger">Billie Eilishs</p>
               </div>
             </div>
 
@@ -193,28 +194,35 @@
           </div> -->
 
           <div class="song-playing-section__bottom__controls">
-            <svg class="icon">
+            <svg class="icon repeatBtn">
               <use xlink:href="./assets/images/sprite.svg#repeat"></use>
             </svg>
 
-            <svg class="icon">
+            <svg class="icon backBtn">
               <use xlink:href="./assets/images/sprite.svg#back"></use>
             </svg>
 
-            <svg class="icon playbutton">
-              <use xlink:href="./assets/images/sprite.svg#playbutton" class="playbutton-self"></use>
-            </svg>
+            <div class="toggle-play-pause ">
+              <svg class="icon pauseBtn ">
+                <use xlink:href="./assets/images/sprite.svg#pause"></use>
+              </svg>
 
-            <svg class="icon">
+              <img src="./assets/images/Play.svg" alt="" class="icon playbutton ">
+
+            </div>
+
+            <svg class="icon nextBtn">
               <use xlink:href="./assets/images/sprite.svg#next"></use>
             </svg>
 
-            <svg class="icon">
+            <svg class="icon randomBtn">
               <use xlink:href="./assets/images/sprite.svg#random"></use>
             </svg>
           </div>
         </div>
       </div>
     </section>
+
+    <script src="./js/app.js" type="module"></script>
   </body>
 </html>

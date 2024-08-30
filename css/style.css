@@ -191,8 +191,14 @@ button {
   width: 80px;
   text-align: center;
   cursor: pointer;
-  text-decoration: underline solid var(--color-primary-color);
+
   transition: all 50ms;
+}
+
+.selection-selected {
+  text-decoration: underline solid var(--color-primary-color);
+  text-decoration-thickness: 0.2rem;
+  text-underline-offset: 8px;
 }
 
 .selection__items :nth-child(2) {
@@ -213,6 +219,7 @@ button {
 
 .song-cover__self__cover-image {
   position: relative;
+  pointer-events: none;
 }
 
 .song-cover__self__cover-image img {
@@ -221,6 +228,7 @@ button {
   object-fit: cover;
   object-position: center center;
   border-radius: 30px;
+  filter: grayscale(100%);
 }
 
 .song-cover__self__cover-image svg {
@@ -232,6 +240,10 @@ button {
   border-radius: 100%;
   bottom: -5px;
   right: 10px;
+}
+
+.song-cover__self__text {
+  pointer-events: none;
 }
 
 .song-cover__self__text h2 {
@@ -266,9 +278,12 @@ button {
   border-radius: 30px;
   padding: 8px 18px;
   margin-bottom: 20px;
+
+  cursor: pointer;
 }
 
 .tracks__self__left {
+  pointer-events: none;
   display: flex;
   align-items: center;
 }
@@ -313,6 +328,10 @@ button {
 }
 
 /* *------------------------ Playing Song Section -------------------------* */
+
+.--display-none {
+  display: none;
+}
 
 .song-playing-section__main {
   /* position: absolute; */
@@ -440,4 +459,19 @@ button {
 .song-playing-section__main .playbutton {
   width: 30px;
   height: 30px;
+}
+
+.toggle-play-pause {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-primary-color);
+  border-radius: 100%;
+}
+
+.playbutton{
+  position: relative;
+  right: 2.5px;
 }
