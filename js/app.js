@@ -1,13 +1,13 @@
 import Storage from "./API.js";
 
 let allSongs = Storage.getData();
+let allFilteredSongs = allSongs;
 let activeSongID = 0;
 let activeSongObject;
 let isSongPlaying = 0;
 let totalTime = 0;
-let repeatOrRandom = "";
-let isRandomOn = 0;
 let isRepeatOn = 0;
+let status;
 
 const songsCover = document.querySelector(".songs-cover");
 const tracksContainer = document.querySelector(".tracks-container");
@@ -37,13 +37,16 @@ const nextBtn = document.querySelector(".nextBtn");
 const backBtn = document.querySelector(".backBtn");
 const pauseBtn = document.querySelector(".pauseBtn");
 const playBtn = document.querySelector(".playbutton");
-const randomBtn = document.querySelector(".randomBtn");
 const repeatBtn = document.querySelector(".repeatBtn");
 
 // *-------------------------- Filtered Controls ---------------------------------
 const allBtn = document.querySelector(".allBtn");
-const newsBtn = document.querySelector(".newsBtn");
 const favouriteBtn = document.querySelector(".FavouriteBtn");
+
+// *--------------------------- Favourite ----------------------------------------
+const favouriteIconMainPage = document.querySelector(
+  ".tracks__self__right__icon"
+);
 
 class Ui {
   addToDOM(songs) {
@@ -68,11 +71,28 @@ class Ui {
     [allCoversSongs, allPlaylistSongs].forEach((item) =>
       item.forEach((song) => {
         song.addEventListener("click", (e) => {
-          activeSongID = Number(e.target.dataset.songid);
-          this.openModalwithActiveSong();
+          // if the heart Icon was clicked by the user
+          if (e.target.classList == "tracks__self__right") {
+            const favId = e.target.dataset.songid;
+            this.favouriteLogic(favId);
+          } else {
+            // if the track was clicked by the user
+            activeSongID = Number(e.target.dataset.songid);
+            this.openModalwithActiveSong();
+          }
         });
       })
     );
+  }
+
+  favouriteLogic(favId) {
+    allSongs.forEach((song) => {
+      if (song.id == favId) {
+        song.isFavourite = Number(!song.isFavourite);
+        allFilteredSongs = allSongs;
+        this.filterSongs(status);
+      }
+    });
   }
 
   createCoverHTML(song) {
@@ -106,9 +126,9 @@ class Ui {
               <p>${song.singer}</p>
             </div>
           </div>
-          <div class="tracks__self__right">
-            <svg class="icon tracks__self__right__icon">
-              <use xlink:href="./assets/images/sprite.svg#heart"></use>
+          <div class="tracks__self__right" data-songId=${song.id} >
+            <svg class="icon tracks__self__right__icon" data-songId=${song.id}>
+              <use xlink:href="./assets/images/sprite.svg#heart" class="tracks__self__right__icon__self"></use>
             </svg>
           </div>
         </div>
@@ -119,21 +139,24 @@ class Ui {
     switch (status) {
       case "favourite":
         const favSongs = allSongs.filter((song) => song.isFavourite === 1);
-        this.addToDOM(favSongs);
+        allFilteredSongs = favSongs;
+        this.addToDOM(allFilteredSongs);
         break;
 
       case "news":
         const filteredSongs = allSongs.sort((a, b) => {
           new Date(a.releaseDate) > new Date(b.releaseDate) ? 1 : -1;
         });
+        allFilteredSongs = filteredSongs;
         this.addToDOM(filteredSongs);
 
       default:
-        this.addToDOM(allSongs);
+        allFilteredSongs = allSongs;
+        this.addToDOM(allFilteredSongs);
         break;
     }
 
-    [allBtn, newsBtn, favouriteBtn].forEach((btn) => {
+    [allBtn, favouriteBtn].forEach((btn) => {
       if (btn.dataset.filterstatus != status) {
         btn.classList.remove("--selected-Filter");
       } else {
@@ -164,12 +187,17 @@ class Ui {
 
   nextSong() {
     const ui = new Ui();
+    let songIndex = allFilteredSongs.findIndex(
+      (song) => song.id == activeSongID
+    );
 
     // Checking if we reach our end of songs
-    if (activeSongID + 1 > allSongs.length) {
-      activeSongID = 1; // If we reached our end of array, we start from the beginning
+    if (songIndex + 1 > allFilteredSongs.length - 1) {
+      activeSongID = allFilteredSongs[0].id; // If we reached our end of array, we start from the beginning
     } else {
-      activeSongID += 1; // Else, go to the next song
+      songIndex += 1;
+
+      activeSongID = allFilteredSongs[songIndex].id; // Else, go to the next song
     }
     isSongPlaying = 0;
     ui.updateModalWithActiveSong();
@@ -178,18 +206,25 @@ class Ui {
   previousSong() {
     const ui = new Ui();
 
+    let songIndex = allFilteredSongs.findIndex(
+      (song) => song.id == activeSongID
+    );
+
     // Checking if we reach our end of songs
-    if (activeSongID - 1 < 1) {
-      activeSongID = allSongs.length; // If we reached our end of array, we start from the end
+    if (songIndex - 1 < 0) {
+      activeSongID = allFilteredSongs[allFilteredSongs.length - 1].id; // If we reached our end of array, we start from the end
     } else {
-      activeSongID -= 1; // Else, go to the previous song
+      songIndex -= 1;
+      activeSongID = allFilteredSongs[songIndex].id;
     }
     isSongPlaying = 0;
+
     ui.updateModalWithActiveSong();
   }
 
   updateModalWithActiveSong() {
     this.findSongWithID(activeSongID);
+
     selectedAudioPlayer.src = activeSongObject.audioSrc;
 
     // Playing the song
@@ -234,49 +269,13 @@ class Ui {
       progressBarUi.style.width = percent;
 
       if (percent === "100%") {
-        switch (repeatOrRandom) {
-          case "repeat":
-            this.repeat();
-            break;
-
-          case "random":
-            this.random();
-
-          default:
-            this.nextSong();
-            break;
+        if (isRepeatOn) {
+          this.repeat();
+        } else {
+          this.nextSong();
         }
       }
     });
-  }
-
-  random() {
-    function getRandomInt(min, max) {
-      const minCeiled = Math.ceil(min);
-      const maxFloored = Math.floor(max);
-      return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
-    }
-
-    const max = allSongs.length + 1;
-    const min = 1;
-
-    activeSongID = getRandomInt(min, max);
-    isSongPlaying = 0;
-    this.updateModalWithActiveSong();
-  }
-
-  randomBtnLogic() {
-    if (isRandomOn) {
-      isRandomOn = 0;
-      repeatOrRandom = "";
-      randomBtn.classList.remove("--selected");
-    } else {
-      isRandomOn = 1;
-      isRepeatOn = 0;
-      repeatOrRandom = "random";
-      randomBtn.classList.add("--selected");
-      repeatBtn.classList.remove("--selected");
-    }
   }
 
   repeat() {
@@ -287,14 +286,12 @@ class Ui {
   repeatBtnLogic() {
     if (isRepeatOn) {
       isRepeatOn = 0;
-      repeatOrRandom = "";
+      isRepeatOn = "";
       repeatBtn.classList.remove("--selected");
     } else {
       isRepeatOn = 1;
-      isRandomOn = 0;
-      repeatOrRandom = "repeat";
+      isRepeatOn = "repeat";
       repeatBtn.classList.add("--selected");
-      randomBtn.classList.remove("--selected");
     }
   }
 
@@ -319,12 +316,11 @@ document.addEventListener("DOMContentLoaded", () => {
   nextBtn.addEventListener("click", ui.nextSong);
   backBtn.addEventListener("click", ui.previousSong);
 
-  randomBtn.addEventListener("click", ui.randomBtnLogic);
   repeatBtn.addEventListener("click", ui.repeatBtnLogic);
 
-  [allBtn, newsBtn, favouriteBtn].forEach((btn) => {
+  [allBtn, favouriteBtn].forEach((btn) => {
     btn.addEventListener("click", (e) => {
-      const status = e.target.dataset.filterstatus;
+      status = e.target.dataset.filterstatus;
       ui.filterSongs(status);
     });
   });

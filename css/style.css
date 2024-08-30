@@ -308,13 +308,19 @@ button {
 .tracks__self__right {
   display: flex;
   align-items: center;
+  padding: 10px;
+  margin: 10px;
 }
 
 .tracks__self__right__icon {
   width: 20px;
   height: 20px;
   border-radius: 100%;
-  margin-left: 10px;
+  pointer-events: none;
+}
+
+.tracks__self__right__icon__self {
+  pointer-events: none;
 }
 
 @media screen and (min-width: 1000px) {
@@ -504,4 +510,3 @@ button {
 .--selected {
   opacity: 1;
 }
-
