@@ -38,9 +38,9 @@
     <section class="selection container">
       <div class="selection__items">
         <!-- selection-selected -->
-        <p>All</p>
-        <p>News</p>
-        <p>Favourite</p>
+        <p class="--selected-Filter allBtn" data-filterStatus="all" >All</p>
+        <p class="newsBtn" data-filterStatus="news">News</p>
+        <p class="FavouriteBtn" data-filterStatus="favourite">Favourite</p>
       </div>
     </section>
 
@@ -186,38 +186,44 @@
           </div>
 
           <div class="song-playing-section__bottom__progress">
-            <div class="song-playing-section__bottom__progress__self">25%</div>
+            <div class="song-playing-section__bottom__progress__self">
+              <div class="circle-progress"></div>
+            </div>
           </div>
 
-          <!-- <div class="song-playing-section__bottom__progress">
-            <progress id="file" value="32" max="100">32%</progress>
-          </div> -->
-
           <div class="song-playing-section__bottom__controls">
-            <svg class="icon repeatBtn">
-              <use xlink:href="./assets/images/sprite.svg#repeat"></use>
-            </svg>
+            <img
+              src="./assets/images/repeat.svg"
+              alt="repeat icon"
+              class="icon repeatBtn"
+            />
 
             <svg class="icon backBtn">
               <use xlink:href="./assets/images/sprite.svg#back"></use>
             </svg>
 
-            <div class="toggle-play-pause ">
-              <svg class="icon pauseBtn ">
+            <div class="toggle-play-pause">
+              <svg class="icon pauseBtn">
                 <use xlink:href="./assets/images/sprite.svg#pause"></use>
               </svg>
 
-              <img src="./assets/images/Play.svg" alt="" class="icon playbutton ">
-
+              <img
+                src="./assets/images/Play.svg"
+                alt=""
+                class="icon playbutton"
+              />
             </div>
 
             <svg class="icon nextBtn">
               <use xlink:href="./assets/images/sprite.svg#next"></use>
             </svg>
 
-            <svg class="icon randomBtn">
-              <use xlink:href="./assets/images/sprite.svg#random"></use>
-            </svg>
+            <img
+              src="./assets/images/random.svg"
+              class="icon randomBtn"
+              alt="random Icon"
+            />
+
           </div>
         </div>
       </div>

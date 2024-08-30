@@ -195,7 +195,7 @@ button {
   transition: all 50ms;
 }
 
-.selection-selected {
+.--selected-Filter {
   text-decoration: underline solid var(--color-primary-color);
   text-decoration-thickness: 0.2rem;
   text-underline-offset: 8px;
@@ -329,10 +329,6 @@ button {
 
 /* *------------------------ Playing Song Section -------------------------* */
 
-.--display-none {
-  display: none;
-}
-
 .song-playing-section__main {
   /* position: absolute; */
   position: fixed;
@@ -341,7 +337,7 @@ button {
   top: 0;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 200px;
+  grid-template-rows: 1fr 240px;
 }
 
 /* - - - Top - - - */
@@ -409,7 +405,6 @@ button {
 
 /*  - - - Bottom - - -  */
 .song-playing-section__bottom {
-  /* !temp */
   background-color: rgb(255, 255, 255);
   width: 100%;
   display: flex;
@@ -424,7 +419,7 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
+  padding-bottom: 50px;
 }
 
 .song-playing-section__main .icon,
@@ -443,9 +438,21 @@ button {
 }
 
 .song-playing-section__bottom__progress__self {
-  width: 25%;
+  position: relative;
+  height: 5px;
+  width: 0%;
   background-color: var(--color-primary-color);
   border-radius: 30px;
+}
+
+.circle-progress {
+  position: absolute;
+  right: 0;
+  bottom: -5px;
+  width: 14px;
+  height: 14px;
+  border-radius: 100%;
+  background-color: var(--color-primary-color);
 }
 
 .song-playing-section__bottom__info {
@@ -471,7 +478,30 @@ button {
   border-radius: 100%;
 }
 
-.playbutton{
+.toggle-play-pause .playbutton {
   position: relative;
-  right: 2.5px;
+  right: 2px;
+  bottom: 2px;
+  width: 25px;
+  height: 25px;
 }
+
+.modalLeftTitle {
+  margin-top: 30px;
+}
+
+.repeatBtn,
+.randomBtn {
+  opacity: 0.3;
+}
+
+/* todo: add to top ------------------------------ */
+
+.--display-none {
+  display: none;
+}
+
+.--selected {
+  opacity: 1;
+}
+

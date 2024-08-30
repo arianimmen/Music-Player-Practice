@@ -1,9 +1,9 @@
 const data = [
   {
     id: 1,
-    title: "Bad guy",
+    title: "1 Bad guy",
     singer: "Harry",
-    isFavourite: 0,
+    isFavourite: 1,
     releaseDate: "2024",
     lyrics: "SONG SONG 1 1 1 1 1 1 1 1",
     audioSrc: "./assets/audios/1.mp3",
@@ -11,7 +11,7 @@ const data = [
   },
   {
     id: 2,
-    title: "Good guy",
+    title: "2 Good guy",
     singer: "Arian",
     isFavourite: 1,
     releaseDate: "2023",
@@ -19,24 +19,24 @@ const data = [
     audioSrc: "./assets/audios/2.mp3",
     coverSrc: "./assets/images/cov.png",
   },
-  // {
-  //   id: 3,
-  //   title: "Bad guy",
-  //   singer: "Harry",
-  //   isFavourite: 0,
-  //   releaseDate: "2024",
-  //   audioSrc: "./assets/audios/1.mp3",
-  //   coverSrc: "./assets/images/images.jpeg",
-  // },
-  // {
-  //   id: 4,
-  //   title: "Good guy",
-  //   singer: "Arian",
-  //   isFavourite: 1,
-  //   releaseDate: "2023",
-  //   audioSrc: "./assets/audios/1.mp3",
-  //   coverSrc: "./assets/images/cov.png",
-  // },
+  {
+    id: 3,
+    title: "3 guy",
+    singer: "S",
+    isFavourite: 0,
+    releaseDate: "2021",
+    audioSrc: "./assets/audios/3.mp3",
+    coverSrc: "./assets/images/images.jpeg",
+  },
+  {
+    id: 4,
+    title: "4 Not en..",
+    singer: "Arian",
+    isFavourite: 0,
+    releaseDate: "2025",
+    audioSrc: "./assets/audios/4.mp3",
+    coverSrc: "./assets/images/cov.png",
+  },
 ];
 
 class Storage {
