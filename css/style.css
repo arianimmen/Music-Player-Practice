@@ -159,7 +159,7 @@ button {
   display: none;
 }
 
-.header__main__text :first-child{
+.header__main__text :first-child {
   display: block;
 }
 
@@ -489,7 +489,7 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .song-playing-section__main .icon,
@@ -564,7 +564,7 @@ button {
 }
 
 .modalLeftTitle {
-  margin-top: 30px;
+  margin-top: 0px;
 }
 
 .repeatBtn,
@@ -614,6 +614,7 @@ button {
   pointer-events: none;
 }
 
-.song-playing-section__bottom__controls{
+.song-playing-section__bottom__controls,
+.song-playing-section__bottom {
   overflow-y: auto;
 }
