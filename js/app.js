@@ -321,12 +321,13 @@ class Ui {
   }
 
   openModal() {
+    document.body.classList.add("disableScroll");
     songPlayingSectionModal.classList.remove("--display-none"); // Opening the modal by removing the class none
   }
 
   closeModal() {
     songPlayingSectionModal.classList.add("--display-none"); // Closing the modal by adding class none
-
+    document.body.classList.remove("disableScroll");
     selectedAudioPlayer.src = activeSongObject.audioSrc;
     selectedAudioPlayer.pause();
     selectedAudioPlayer.currentTime = 0;
