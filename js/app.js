@@ -49,6 +49,9 @@ const favIconModal = document.querySelector(".favIconModal");
 // *--------------------------- SearchBar ---------------------------------------
 const searchBar = document.querySelector(".search-bar");
 const selectionSection = document.querySelector(".selection");
+const titleModal = document.querySelector(
+  ".song-playing-section__top__songTitle"
+);
 
 class Ui {
   addToDOM(songs) {
@@ -236,7 +239,8 @@ class Ui {
     } else {
       favIconModal.classList.remove("--fav-selected");
     }
-    lyricsSection.textContent = activeSongObject.lyrics;
+    titleModal.textContent = activeSongObject.title;
+    lyricsSection.innerHTML = activeSongObject.lyrics;
     modalLeftTitle.textContent = activeSongObject.title;
     modalLeftSinger.textContent = activeSongObject.singer;
   }
