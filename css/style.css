@@ -17,7 +17,7 @@
 }
 
 .container {
-  margin: 0rem 1rem;
+  margin: 0rem 2rem;
   padding: 1rem 1rem;
 }
 
@@ -27,6 +27,8 @@
     margin: 0rem auto;
   }
 }
+
+
 
 body {
   background-color: var(--color-background);
@@ -153,6 +155,11 @@ button {
   position: relative;
   top: 12px;
   margin-left: 40px;
+}
+
+.hero-image{
+  width: 173px;
+  height: 185px;
 }
 
 .header__main__text p {
@@ -489,7 +496,8 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 100px;
+  margin-bottom: 40px; 
+  /* ! 100 px --------------------------------------------------- */
 }
 
 .song-playing-section__main .icon,
