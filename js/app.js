@@ -1,22 +1,24 @@
+// Importing the Storage class from our api (it's just a class inside api.js)
 import Storage from "./API.js";
 
-let allSongs = Storage.getData();
-let allFilteredSongs = allSongs;
-let activeSongID = 0;
-let activeSongObject;
-let isSongPlaying = 0;
-let totalTime = 0;
-let isRepeatOn = 0;
-let status = "all";
+// ------------------- Setting the local values so we can access to them in different mothods -------------------------------------------
+
+let allSongs = Storage.getData(); // Will store all of our songs
+let allFilteredSongs = allSongs; // In the programm we filter our songs by favourite, all and search so we will use this variable
+let activeSongID = 0; // Id for the active playing song
+let activeSongObject; // Store all the informations (in object format) about our active song
+let isSongPlaying = 0; // A bool to check if song is playing
+let totalTime = 0; // Total time of the song length
+let isRepeatOn = 0; // A bool to check if srepeat button is on
+let status = "all"; // Status will have 2 possible values: all (all songs) , favorite
 
 const songsCover = document.querySelector(".songs-cover");
 const tracksContainer = document.querySelector(".tracks-container");
-
 // *--- selecting the audio tag (it will be act as main audio player) -----
 const selectedAudioPlayer = document.querySelector(".selected-audio");
 
 // *------------------------ ModalArea -------------------------------------
-// Selecting the modal tag
+// Selecting the modal tags
 const songPlayingSectionModal = document.querySelector(".song-playing-section");
 const closeBtn = document.querySelector(".close-btn");
 const lyricsSection = document.querySelector(
@@ -92,14 +94,15 @@ class Ui {
   }
 
   favouriteLogic(favId) {
+    // Finding the song that was clicked to be favorite
     allSongs.forEach((song) => {
       if (song.id == favId) {
-        song.isFavourite = Number(!song.isFavourite);
-        allFilteredSongs = allSongs;
-        this.filterSongs(status);
+        song.isFavourite = Number(!song.isFavourite); // Toggling the favortie status
+        allFilteredSongs = allSongs; 
+        this.filterSongs(status); // Updating the DOM
       }
     });
-    Storage.saveDate(allSongs);
+    Storage.saveDate(allSongs); // Saving the songs to our local storage 
   }
 
   createCoverHTML(song) {
@@ -145,19 +148,21 @@ class Ui {
   }
 
   filterSongs(status) {
+    // Filtering the song based on 2 values: Favorite , All
     switch (status) {
       case "favourite":
-        const favSongs = allSongs.filter((song) => song.isFavourite === 1);
-        allFilteredSongs = favSongs;
-        this.addToDOM(allFilteredSongs);
+        const favSongs = allSongs.filter((song) => song.isFavourite === 1); // Filtering the songs that was favorite
+        allFilteredSongs = favSongs; // Updating the filteredsongs
+        this.addToDOM(allFilteredSongs); // Updating the DOM
         break;
 
       default:
-        allFilteredSongs = allSongs;
-        this.addToDOM(allFilteredSongs);
+        allFilteredSongs = allSongs; // Add all songs (Because the default value means the user is on all songs)
+        this.addToDOM(allFilteredSongs); // Updating the DOM
         break;
     }
 
+    // Updating the ui like button
     [allBtn, favouriteBtn].forEach((btn) => {
       if (btn.dataset.filterstatus != status) {
         btn.classList.remove("--selected-Filter");
@@ -168,6 +173,7 @@ class Ui {
   }
 
   convertTimeForamt(time) {
+    // Converting time to a readable format
     function addpad(time) {
       return String(time).padStart(2, "0");
     }
@@ -183,8 +189,6 @@ class Ui {
     this.openModal(); // Opening the Modal
     closeBtn.addEventListener("click", this.closeModal); // if close button was clicked, close the modal!
     this.updateModalWithActiveSong();
-
-    // Audio Controls Logic
   }
 
   nextSong() {
