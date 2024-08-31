@@ -485,7 +485,7 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
 }
 
 .song-playing-section__main .icon,
@@ -582,6 +582,13 @@ button {
     filter: invert(56%) sepia(66%) saturate(4529%) hue-rotate(331deg)
       brightness(79%) contrast(98%);
   }
+
+  .allBtn:hover,
+  .FavouriteBtn:hover {
+    text-decoration: underline solid var(--color-primary-color);
+    text-decoration-thickness: 0.2rem;
+    text-underline-offset: 8px;
+  }
 }
 
 /* todo: add to top ------------------------------ */
@@ -601,4 +608,8 @@ button {
 
 .--disable-click {
   pointer-events: none;
+}
+
+.song-playing-section__bottom__controls{
+  overflow-y: auto;
 }
