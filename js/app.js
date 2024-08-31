@@ -7,7 +7,7 @@ let activeSongObject;
 let isSongPlaying = 0;
 let totalTime = 0;
 let isRepeatOn = 0;
-let status;
+let status = "all";
 
 const songsCover = document.querySelector(".songs-cover");
 const tracksContainer = document.querySelector(".tracks-container");
@@ -29,6 +29,7 @@ const modalLeftSinger = document.querySelector(".modalLeftSinger");
 const progressBarUi = document.querySelector(
   ".song-playing-section__bottom__progress__self"
 );
+const modalBackImage = document.querySelector(".modal-back-image");
 
 // *-------------------------- audio Controls ------------------------------------
 // selecting the play button
@@ -239,10 +240,10 @@ class Ui {
     } else {
       favIconModal.classList.remove("--fav-selected");
     }
-    titleModal.textContent = activeSongObject.title;
     lyricsSection.innerHTML = activeSongObject.lyrics;
     modalLeftTitle.textContent = activeSongObject.title;
     modalLeftSinger.textContent = activeSongObject.singer;
+    modalBackImage.src = activeSongObject.coverModal;
   }
 
   findSongWithID(id) {
