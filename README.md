@@ -6,6 +6,12 @@ This is a responsive music player web application with several features includin
 
 Check out the live version of the application [here](https://66d31bee1cdaae1aba95427b--stately-speculoos-64dab3.netlify.app/).
 
+## Screenshots
+![Screenshot from 2024-08-31 19-37-47](https://github.com/user-attachments/assets/5a2d3c98-b561-4f2c-a508-7b16a92e819b)
+
+![Screenshot from 2024-08-31 19-38-01](https://github.com/user-attachments/assets/a795e1bc-5fd2-4014-97bd-b24e4d5d7e36)
+
+
 ## Features
 
 - Responsive Design: The music player is fully responsive, providing a seamless experience across devices.
